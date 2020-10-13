@@ -14,7 +14,17 @@
     <div>{{ form.name.label }} {{ form.name }}</div>
     <div>{{ form.start_date.label }} {{ form.start_date }}</div>
     <div>{{ form.start_time.label }} {{ form.start_time }}</div>
-    <div>{{ form.end_date.label }} {{ form.end_date }}</div>
+    <div>{{ form.end_date.label }} {{ form.end_date }}
+
+      {% if form.end_date.errors %}
+      <ul class="errors">
+        {% for error in form.end_date.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+    </div>
     <div>{{ form.end_time.label }} {{ form.end_time }}</div>
     <div>{{ form.description.label }} {{ form.description }}</div>
     <div>{{ form.private.label }} {{ form.private }}</div>
