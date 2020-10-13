@@ -37,10 +37,10 @@ def main():
             with conn.cursor() as curs:
                 # execute sql command to alter db, retrieve data, etc.
                 # curs.execute("<sql insert statement>")
-                values = ', '.join(['%s'] * len(params))
+                placeholders = ', '.join(['%s'] * len(params))
                 columns = ', '.join(params.keys())
                 sql = "INSERT INTO appointments ( %s ) VALUES ( %s )" % (
-                    columns, values)
+                    columns, placeholders)
                 curs.execute(sql, list(params.values()))
                 return redirect('/')
     # create connection object as conn to connect to db
