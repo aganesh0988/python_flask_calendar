@@ -40,9 +40,9 @@ def main():
                 values = ', '.join(['%s'] * len(params))
                 columns = ', '.join(params.keys())
                 sql = "INSERT INTO appointments ( %s ) VALUES ( %s )" % (
-                    columns, values) '%s', '%s',
+                    columns, values)
                 curs.execute(sql, list(params.values()))
-                redirect('/')
+                return redirect('/')
     # create connection object as conn to connect to db
     with psycopg2.connect(**CONNECTION_PARAMETERS) as conn:
         # create cursor object as curs to interact with db
