@@ -15,12 +15,15 @@ CONNECTION_PARAMETERS = {
 @bp.route('/')
 def main():
     # create connection object as conn to connect to db
-    with psycopg2.connect(CONNECTION_PARAMETERS) as conn:
+    with psycopg2.connect(**CONNECTION_PARAMETERS) as conn:
         # create cursor object as curs to interact with db
         with conn.cursor() as curs:
             # execute sql command to alter db, retrieve data, etc.
-            # curs.execute(<sql command>)
-
+            # curs.execute("<sql command>")
+            curs.execute(
+                "SELECT id, name, start_datetime, end_datetime FROM appointments ORDER BY start_datetime;")
+            rows = curs.fetchall()
+            print(rows)
             # add data extracted from db to render_template arg list
             # this displays db info in specified HTML template
-    return render_template('main.html')
+    return render_template('main.html', rows=rows)
