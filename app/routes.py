@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template
 import os
 import psycopg2
+from .forms import AppointmentForm
 
 bp = Blueprint('main', __name__, '')
 
@@ -11,9 +12,12 @@ CONNECTION_PARAMETERS = {
     'host': os.environ.get('DB_HOST')
 }
 
+# add methods=['GET', 'POST'] so this route can accept form submission
+
 
 @bp.route('/')
 def main():
+    form = AppointmentForm()
     # create connection object as conn to connect to db
     with psycopg2.connect(**CONNECTION_PARAMETERS) as conn:
         # create cursor object as curs to interact with db
@@ -26,4 +30,4 @@ def main():
             print(rows)
             # add data extracted from db to render_template arg list
             # this displays db info in specified HTML template
-    return render_template('main.html', rows=rows)
+    return render_template('main.html', rows=rows, form=form)

@@ -9,7 +9,17 @@
 
 <body>
   <h1>Calendar working</h1>
-
+  <form method='post' action='/'>
+    {{ form.hidden_tag() }}
+    <div>{{ form.name.label }} {{ form.name }}</div>
+    <div>{{ form.start_date.label }} {{ form.start_date }}</div>
+    <div>{{ form.start_time.label }} {{ form.start_time }}</div>
+    <div>{{ form.end_date.label }} {{ form.end_date }}</div>
+    <div>{{ form.end_time.label }} {{ form.end_time }}</div>
+    <div>{{ form.description.label }} {{ form.description }}</div>
+    <div>{{ form.private.label }} {{ form.private }}</div>
+    <div>{{ form.submit }}</div>
+  </form>
   <table>
     <thead>
       <tr>
